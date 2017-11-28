@@ -5,8 +5,9 @@ function Todo () {
     };
 
     this.addAllEvents = function() { 
-        $("li").click(this.completeTask);
-        $(".delete").click(this.deleteTask);
+        $("ul").on("click", "li", this.completeTask);
+        $("ul").on("click" ,".delete", this.deleteTask);
+        $("#newTodo").keypress(this.createTask)
     }; 
 
     this.deleteTask = function (event) {
@@ -16,10 +17,17 @@ function Todo () {
         });  
     }
 
-    //connect all js events. 
-    this.addAllEvents()
+    this.createTask = function (event) { 
+        //only add if user press enter
+        if ( event.which === 13) { 
+            $("ul").append("<li><span class=\"delete\">X</span> "+$(this).val()+"</li>");
+            $(this).val("");
+        }
+    };
 };
 
 //create Todo page object.
 var todo = new Todo();
-;
+
+//connect all js events. 
+todo.addAllEvents();
