@@ -1,3 +1,10 @@
-body { 
-    background-color: pink
+#container {
+    border: 2px solid gray;
+    margin: 10px auto;
+    width: 600px;
+}
+
+.done  { 
+    color: gray;
+    text-decoration: line-through;
 }
